@@ -27,8 +27,12 @@ trait ResourceAwareTrait
     
     final public function readResource(): string
     {
-        $this->lastMessage = stream_get_line($this->getResource(), 8192, "\r\n");
-        echo $this->lastMessage . PHP_EOL;
+        $message = stream_get_line($this->getResource(), 8192, "\r\n");
+        if (!$message) {
+            return '';
+        }
+        echo $message . PHP_EOL;
+        $this->lastMessage = $message;
         return $this->lastMessage;
     }
     
