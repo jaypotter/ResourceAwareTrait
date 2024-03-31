@@ -1,0 +1,28 @@
+{
+    "name": "potter/resource-aware-trait",
+    "description": "PHP Resource Aware Trait",
+    "type": "library",
+    "require": {
+        "php": "^8.3",
+        "psr/container": "^2.0@dev"
+    },
+    "suggest": {
+        "potter/aware-traits": "dev-main",
+        "potter/aware": "dev-main",
+        "potter/traits": "dev-main",
+        "potter/framework": "dev-main"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Potter\\Resource\\Aware\\": "src/Potter/Resource/Aware/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jay Potter",
+            "email": "j@ypotter.ca"
+        }
+    ],
+    "minimum-stability": "dev"
+}
