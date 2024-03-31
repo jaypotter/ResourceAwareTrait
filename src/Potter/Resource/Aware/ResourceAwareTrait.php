@@ -8,6 +8,13 @@ use \Psr\Container\ContainerInterface;
 
 trait ResourceAwareTrait 
 {    
+    private string $lastMessage;
+    
+    final public function getLastMessage(): string
+    {
+        return $this->lastMessage();
+    }
+    
     final public function getResource(): mixed
     {
         return $this->getContainer()->get('resource');
@@ -20,9 +27,9 @@ trait ResourceAwareTrait
     
     final public function readResource(): string
     {
-        $message = stream_get_line($this->getResource(), 8192, "\r\n");
-        echo $message;
-        return $message;
+        $this->lastMessage = stream_get_line($this->getResource(), 8192, "\r\n");
+        echo $this->lastMessage;
+        return $this->lastMessage;
     }
     
     final public function writeResource(string $data): void
