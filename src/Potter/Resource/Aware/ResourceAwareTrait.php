@@ -20,9 +20,9 @@ trait ResourceAwareTrait
     
     final public function readResource(): string
     {
-        $this->lastMessage = stream_get_line($this->getResource(), 8192, "\r\n");
-        echo $this->lastMessage;
-        return $this->lastMessage;
+        $message = stream_get_line($this->getResource(), 8192, "\r\n");
+        echo $message;
+        return $message;
     }
     
     final public function writeResource(string $data): void
