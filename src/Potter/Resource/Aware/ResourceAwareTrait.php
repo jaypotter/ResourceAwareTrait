@@ -7,9 +7,7 @@ namespace Potter\Resource\Aware;
 use \Psr\Container\ContainerInterface;
 
 trait ResourceAwareTrait 
-{
-    private array $messageBuffer = [];
-    
+{    
     final public function getResource(): mixed
     {
         return $this->getContainer()->get('resource');
@@ -22,20 +20,9 @@ trait ResourceAwareTrait
     
     final public function readResource(): string
     {
-        $messageBuffer = '';
-        $resource = $this->getResource();
-        while (($message = stream_socket_recvfrom($resource, 8192)) && strlen($message) > 0) {
-            $messageBuffer .= $message;
-        }
-        if (strlen($messageBuffer) > 0) {
-            array_push($this->messageBuffer, ...array_values(explode("\r\n", $messageBuffer)));
-        }
-        if (count($this->messageBuffer) == 0) {
-            return '';
-        }
-        $this->lastMessage = array_shift($this->messageBuffer);
-        echo $this->lastMessage . PHP_EOL;
-        return $this->lastMessage . PHP_EOL;
+        $this->lastMessage = stream_get_line($this->getStream(), 8192, "\r\n");
+        echo $this->lastMessage;
+        return $this->lastMessage;
     }
     
     final public function writeResource(string $data): void
