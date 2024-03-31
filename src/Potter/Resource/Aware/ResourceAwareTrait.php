@@ -36,5 +36,10 @@ trait ResourceAwareTrait
         return ($this->lastMessage = array_shift($this->messageBuffer)) . PHP_EOL;
     }
     
+    final public function writeResource(string $data): void
+    {
+        fwrite($this->getResource(), $data . PHP_EOL);
+    }
+    
     abstract public function getContainer(): ContainerInterface;
 }
