@@ -24,8 +24,8 @@ trait ResourceAwareTrait
     {
         $messageBuffer = '';
         $resource = $this->getResource();
-        while (!feof($resource)) {
-            $messageBuffer .= fread($resource, 2048);
+        while ($message = stream_socket_recvfrom($resource, 8192)) {
+            $messageBuffer .= $message;
         }
         if (strlen($messageBuffer) > 0) {
             array_push($this->messageBuffer, ...array_values(explode("\r\n", $messageBuffer)));
