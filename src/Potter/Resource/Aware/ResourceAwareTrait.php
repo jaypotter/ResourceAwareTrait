@@ -12,7 +12,7 @@ trait ResourceAwareTrait
     
     final public function getLastMessage(): string
     {
-        return $this->lastMessage();
+        return $this->lastMessage;
     }
     
     final public function getResource(): mixed
