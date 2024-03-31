@@ -20,11 +20,12 @@ trait ResourceAwareTrait
         return $this->getContainer()->has('resource');
     }
     
-    final public function readResource(int $length): string
+    final public function readResource(): string
     {
         $messageBuffer = '';
-        while (($message = fread($this->getResource(), $length)) && strlen($message) > 0) {
-            $messageBuffer .= $message;
+        $resource = $this->getResource();
+        while (!feof($resource)) {
+            $messageBuffer .= fread($resource, 2048);
         }
         if (strlen($messageBuffer) > 0) {
             array_push($this->messageBuffer, ...array_values(explode("\r\n", $messageBuffer)));
