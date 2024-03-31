@@ -23,7 +23,6 @@ trait ResourceAwareTrait
     final public function readResource(int $length): string
     {
         $messageBuffer = '';
-        
         while (($message = fread($this->getResource(), $length)) && strlen($message) > 0) {
             $messageBuffer .= $message;
         }
@@ -33,11 +32,14 @@ trait ResourceAwareTrait
         if (count($this->messageBuffer) == 0) {
             return '';
         }
-        return ($this->lastMessage = array_shift($this->messageBuffer)) . PHP_EOL;
+        $this->lastMessage = array_shift($this->messageBuffer);
+        echo $this->lastMessage . PHP_EOL;
+        return $this->lastMessage . PHP_EOL;
     }
     
     final public function writeResource(string $data): void
     {
+        echo $data . PHP_EOL;
         fwrite($this->getResource(), $data . PHP_EOL);
     }
     
