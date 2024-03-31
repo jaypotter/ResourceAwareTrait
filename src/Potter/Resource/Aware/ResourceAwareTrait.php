@@ -24,7 +24,7 @@ trait ResourceAwareTrait
     {
         $messageBuffer = '';
         
-        while ($message = fread($this->getResource(), $length) && strlen($message) > 0) {
+        while (($message = fread($this->getResource(), $length)) && strlen($message) > 0) {
             $messageBuffer .= $message;
         }
         if (strlen($messageBuffer) > 0) {
