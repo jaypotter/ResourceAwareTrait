@@ -1,12 +1,13 @@
 {
     "name": "potter/resource-aware-trait",
-    "description": "PHP Resource Aware Trait",
+    "description": "PHP Aware Trait for Resources",
     "type": "library",
     "require": {
         "php": "^8.3",
-        "psr/container": "^2.0@dev"
+        "psr/container": "^2.0"
     },
     "suggest": {
+        "potter/resource-aware": "dev-main",
         "potter/aware-traits": "dev-main",
         "potter/aware": "dev-main",
         "potter/traits": "dev-main",
@@ -24,5 +25,5 @@
             "email": "j@ypotter.ca"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
